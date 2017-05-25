@@ -119,23 +119,23 @@
                     <div class="form-group answers-wrap"> <!-- Тип: Кілька відповідей -->
                         <label>Відповіді:</label>
                         <div class="form-group answer-field">
-                            <input type="checkbox" name="isTrue">
-                            <input type="text" name="answer" placeholder="Варіант відповіді" class="form-control">
+                            <input type="checkbox" name="isTrue" id="isTrue1">
+                            <input type="text" name="answer" id="answerOne" placeholder="Варіант відповіді" class="form-control">
                             <button class="btn btn-danger">Видалити</button>
                         </div>
                         <div class="form-group answer-field">
-                            <input type="checkbox" name="isTrue">
-                            <input type="text" name="answer" placeholder="Варіант відповіді" class="form-control">
+                            <input type="checkbox" name="isTrue" id="isTrue2">
+                            <input type="text" name="answer" id="answerTwo" placeholder="Варіант відповіді" class="form-control">
                             <button class="btn btn-danger">Видалити</button>
                         </div>
                         <div class="form-group answer-field">
-                            <input type="checkbox" name="isTrue">
-                            <input type="text" name="answer" placeholder="Варіант відповіді" class="form-control">
+                            <input type="checkbox" name="isTrue" id="isTrue3">
+                            <input type="text" name="answer" id="answerThree" placeholder="Варіант відповіді" class="form-control">
                             <button class="btn btn-danger">Видалити</button>
                         </div>
                         <div class="form-group answer-field">
-                            <input type="checkbox" name="isTrue">
-                            <input type="text" name="answer" placeholder="Варіант відповіді" class="form-control">
+                            <input type="checkbox" name="isTrue" id="isTrue4">
+                            <input type="text" name="answer" id="answerFour" placeholder="Варіант відповіді" class="form-control">
                             <button class="btn btn-danger">Видалити</button>
                         </div>
 
@@ -145,13 +145,6 @@
                         </div>
                         <div class="form-group answer-weight">
                             <label>Вага питання:</label>
-                            <%--<select class="form-control" name="">--%>
-                                <%--<option value="1">1</option>--%>
-                                <%--<option value="2">2</option>--%>
-                                <%--<option value="3">3</option>--%>
-                                <%--<option value="4">4</option>--%>
-                                <%--<option value="5">5</option>--%>
-                            <%--</select>--%>
 
                             <select class="form-control" id = "price" name="price">
                                 <option value=1>1</option>

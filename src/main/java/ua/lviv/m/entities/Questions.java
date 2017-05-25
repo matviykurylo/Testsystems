@@ -12,7 +12,7 @@ public class Questions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String text;
-    private String price;
+    private int price;
 
 
     @ManyToOne
@@ -23,17 +23,17 @@ public class Questions {
     public Questions() {
     }
 
-    public Questions(String text, String price) {
+    public Questions(String text, int price) {
         this.text = text;
         this.price = price;
 
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

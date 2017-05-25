@@ -17,7 +17,8 @@ public interface TestService {
     void delete(int id);
 
     Test findById(int id);
-     List<Test> findAll();
+
+    List<Test> findAll();
 
 
 }

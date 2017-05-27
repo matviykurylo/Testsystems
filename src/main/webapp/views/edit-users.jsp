@@ -29,7 +29,7 @@
             <div class="login-register-wrap">
                 <div>
                     <div role="tabpanel" class="tab-pane" id="register-tab">
-                            <form action="/users/add" method="post">
+                            <form action="/users/edit" method="post">
                                 <div class="form-group">
                                     <label>Прізвище</label>
                                     <input class="form-control" name="surName" id="surName" type="text" placeholder="Прізвище">

@@ -58,10 +58,19 @@ public class UserController {
 //        model.addAttribute("groups", groupsList);
         return "edit-users";
     }
-    @RequestMapping(value = {"/users/edit/{id}"}, method = RequestMethod.POST)
-    public String editUser(User user){
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        userService.edit(user);
+//    @RequestMapping(value = {"/users/edit"}, method = RequestMethod.POST)
+//    public String editUser(User user){
+//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//        userService.edit(user);
+//        return "redirect:/users";
+//    }
+    @RequestMapping(value = "/users/edit", method = RequestMethod.POST)
+    public String editUser(User user, @RequestParam("name") String name, @RequestParam("surName") String surName,
+                          @RequestParam("fName") String fName, @RequestParam("email") String email,
+                          @RequestParam("password") String password, @RequestParam("role") String role) {
+        role=user.getRole();
+        userService.save(new User(name, surName, fName, email, password, role));
+
         return "redirect:/users";
     }
 

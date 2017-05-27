@@ -1,6 +1,7 @@
 package ua.lviv.m.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,11 +52,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/edit/{id}", method = RequestMethod.GET)
-    public String editUser(@PathVariable int id, Model model, Principal principal) {
+    public String editUserShow(@PathVariable int id, Model model, Principal principal) {
         model.addAttribute("user", userService.findByEmail(principal.getName()));
-        List<Groups> groupsList = groupService.findAll();
-        model.addAttribute("groups", groupsList);
+//        List<Groups> groupsList = groupService.findAll();
+//        model.addAttribute("groups", groupsList);
         return "edit-users";
+    }
+    @RequestMapping(value = {"/users/edit/{id}"}, method = RequestMethod.POST)
+    public String editUser(User user){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        userService.edit(user);
+        return "redirect:/users";
     }
 
     @RequestMapping(value = "/users/delete/{id}", method = RequestMethod.GET)

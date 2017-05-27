@@ -41,6 +41,12 @@
         
         <security:intercept-url pattern="/" access="permitAll"/>
         <security:intercept-url pattern="/index" access="permitAll"/>
+        <security:intercept-url pattern="/users" access="hasAnyAuthority('TEACHER','ADMIN','USER')"/>
+        <security:intercept-url pattern="/tests/all" access="hasAnyAuthority('TEACHER','ADMIN','USER')"/>
+        <security:intercept-url pattern="/users/delete/{id}" access="hasAuthority('ADMIN')"/>
+        <security:intercept-url pattern="/users/edit/{id}" access="hasAnyAuthority('TEACHER','ADMIN','USER')"/>
+        <security:intercept-url pattern="/tests/add/question" access="hasAnyAuthority('TEACHER','ADMIN')"/>
+
 
     </security:http>
 

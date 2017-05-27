@@ -38,7 +38,7 @@
         <security:logout logout-success-url="/index"/>
         <security:csrf disabled="true"/>
 
-        
+
         <security:intercept-url pattern="/" access="permitAll"/>
         <security:intercept-url pattern="/index" access="permitAll"/>
         <security:intercept-url pattern="/users" access="hasAnyAuthority('TEACHER','ADMIN','USER')"/>

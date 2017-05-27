@@ -20,9 +20,8 @@ public class User implements UserDetails {
     private String fName;
     private String email;
     private String password;
+    private String role;
 
-    @ManyToOne
-    private Role role;
     @ManyToOne
     private Groups groups;
     @ManyToMany
@@ -35,31 +34,33 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String surName, String fName, String email, String password) {
+    public User(String name, String surName, String fName, String email, String password, String role) {
         this.name = name;
         this.surName = surName;
         this.fName = fName;
         this.email = email;
         this.password = password;
+        this.role = role;
+    }
+
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setGroups(Groups groups) {
+        this.groups = groups;
     }
 
     public Groups getGroups() {
         return groups;
     }
 
-    public void setGroup(Groups groups) {
-        this.groups = groups;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-       public List<Test> getTestList() {
+    public List<Test> getTestList() {
         return testList;
     }
 

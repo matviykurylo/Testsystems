@@ -31,12 +31,19 @@
                 <div class="title">Меню</div>
 
                 <div class="list-group">
- <a href="/users/edit/${user.id}" class="list-group-item">Редагувати дані</a>
-<sec:authorize access="isAuthenticated()" >  <a href="/logout" class="list-group-item">Вийти</a> </sec:authorize>
-        <a href="/users" class="list-group-item">Користувачі</a>
-            <a href="/tests/all" class="list-group-item">Тести</a>
-                <a href="results.jsp" class="list-group-item">Результати</a>
-                  <sec:authorize access="isAnonymous()" > <a href="/index" class="list-group-item">Увійти</a></sec:authorize>
+                    <sec:authorize access="isAuthenticated()"> <a href="/users/edit/${user.id}" class="list-group-item">Редагувати
+                        дані</a></sec:authorize>
+                    <sec:authorize access="isAuthenticated()"> <a href="/logout"
+                                                                  class="list-group-item">Вийти</a> </sec:authorize>
+                    <sec:authorize access="isAuthenticated()"> <a href="/users"
+                                                                  class="list-group-item">Користувачі</a></sec:authorize>
+                    <sec:authorize access="isAuthenticated()"> <a href="/tests/all"
+                                                                  class="list-group-item">Тести</a></sec:authorize>
+                    <sec:authorize access="hasAnyAuthority('USER', 'ADMIN')"> <a href="results.jsp"
+                                                                                 class="list-group-item">Результати</a>
+                    </sec:authorize>
+                    <sec:authorize access="isAnonymous()"> <a href="/index"
+                                                              class="list-group-item">Увійти</a></sec:authorize>
 
                 </div>
             </div>

@@ -20,44 +20,58 @@ public class BaseController {
     private UserService userService;
 
 
-   @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String index(Principal principal, Model model){
-       if (principal==null){}
-else{           model.addAttribute("user",userService.findByEmail( principal.getName()));}
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index(Principal principal, Model model) {
+        if (principal == null) {
+        } else {
+            model.addAttribute("user", userService.findByEmail(principal.getName()));
+        }
         return "account";
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public String registrationPage(@RequestParam("name")String name, @RequestParam("surName")String surName, @RequestParam("fName")String fName, @RequestParam("email")String email,  @RequestParam("password")String password) {
-        userService.save(new User(name, surName, fName, email, password));
+    public String registrationPage(@RequestParam("name") String name, @RequestParam("surName") String surName,
+                                   @RequestParam("fName") String fName, @RequestParam("email") String email,
+                                   @RequestParam("password") String password, String role) {
+        role = "USER";
+        userService.save(new User(name, surName, fName, email, password, role));
         return "redirect:/index";
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
 
-    public String signIn(Principal principal, Model model){
-        if (principal==null){}
-        else{
-            model.addAttribute("user", userService.findById(Integer.parseInt(principal.getName())));}
+    public String signIn(Principal principal, Model model) {
+        if (principal == null) {
+        } else {
+            model.addAttribute("user", userService.findById(Integer.parseInt(principal.getName())));
+        }
         return "index";
     }
 
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public String profile(Principal principal, Model model) {
-              if (principal==null){}
-        else{           model.addAttribute("user", userService.findByEmail(principal.getName()));}
+        if (principal == null) {
+        } else {
+            model.addAttribute("user", userService.findByEmail(principal.getName()));
+        }
         return "account";
     }
+
     @RequestMapping(value = "/users/all", method = RequestMethod.GET)
     public String users(Principal principal, Model model) {
-              if (principal==null){}
-        else{           model.addAttribute("user", userService.findByEmail(principal.getName()));}
+        if (principal == null) {
+        } else {
+            model.addAttribute("user", userService.findByEmail(principal.getName()));
+        }
         return "users";
     }
+
     @RequestMapping(value = "/tests", method = RequestMethod.GET)
     public String tests(Principal principal, Model model) {
-        if (principal==null){}
-        else{           model.addAttribute("user", userService.findByEmail(principal.getName()));}
+        if (principal == null) {
+        } else {
+            model.addAttribute("user", userService.findByEmail(principal.getName()));
+        }
         return "tests";
     }
 }

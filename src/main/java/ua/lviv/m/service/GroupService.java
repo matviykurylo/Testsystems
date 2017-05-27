@@ -1,7 +1,6 @@
 package ua.lviv.m.service;
 
 import ua.lviv.m.entities.Groups;
-import ua.lviv.m.entities.Role;
 
 import java.util.List;
 

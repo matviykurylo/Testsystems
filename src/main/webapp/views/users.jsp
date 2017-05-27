@@ -32,38 +32,41 @@
                 <div class="title" onclick="window.location.assign('/')"><sec:authentication property="name"/></div>
                 <div class="title">Меню</div>
                 <div class="list-group">
-                    <%--<a href="/users/edit/${user.id}" class="list-group-item">Редагувати дані</a>--%>
                     <a href="/logout" class="list-group-item">Вийти</a>
                     <a href="/users" class="list-group-item active">Користувачі</a>
                     <a href="/tests/all" class="list-group-item">Тести</a>
-                    <a href="results.html" class="list-group-item">Результати</a> <!-- посилання для студентів, в викладачів інша сторінка -->
+                    <sec:authorize access="hasAnyAuthority('USER', 'ADMIN')"> <a href="results.jsp"
+                                                                                 class="list-group-item">Результати</a>
+                    </sec:authorize>
                 </div>
             </div>
         </div>
         <div class="col-lg-8">
             <div class="content-wrapper">
-                <div class="add-user">
-                    <label>Новий користувач</label>
-                    <form action="/users/add" method="post">
-                    <div class="user-info">
-                        <input type="text" name="surName" placeholder="Прізвище" class="form-control">
-                        <input type="text" name="name" placeholder="Ім'я" class="form-control">
-                        <input type="text" name="fName" placeholder="По-батькові" class="form-control">
-                        <input type="email" name="email" placeholder="Email" class="form-control">
-                        <input type="password" name="password" placeholder="Пароль" class="form-control">
-                    </div>
-                    <div class="user-permission">
-                        <label>Роль користувача</label>
-                        <select class="form-control" name="role" id="role">
-                            <c:forEach items="${role}" var="role">
-                                <option value="${role.id}">${role.role}</option>
-                            </c:forEach>
-                        </select>
-                        <button class="btn btn-success" type="submit">Додати</button>
-                    </div>
+                <sec:authorize access="hasAuthority('ADMIN')">
+                    <div class="add-user">
+                        <label>Новий користувач</label>
+                        <form action="/users/add" method="post">
+                            <div class="user-info">
+                                <input type="text" name="surName" placeholder="Прізвище" class="form-control">
+                                <input type="text" name="name" placeholder="Ім'я" class="form-control">
+                                <input type="text" name="fName" placeholder="По-батькові" class="form-control">
+                                <input type="email" name="email" placeholder="Email" class="form-control">
+                                <input type="password" name="password" placeholder="Пароль" class="form-control">
+                            </div>
+                            <div class="user-permission">
+                                <label>Роль користувача</label>
+                                <select class="form-control" name="role" id="role">
+                                    <option value="USER">СТУДЕНТ</option>
+                                    <option value="TEACHER">ВИКЛАДАЧ</option>
+                                    <option value="ADMIN">АДМІНІСТРАТОР</option>
+                                </select>
+                                <button class="btn btn-success" type="submit">Додати</button>
+                            </div>
                         </form>
-                </div>
-                <hr>
+                    </div>
+                    <hr>
+                </sec:authorize>
                 <div class="users-list">
                     <label>Список користувачів</label>
                     <table class="table table-bordered">
@@ -72,8 +75,10 @@
                             <th>ПІБ</th>
                             <th>Email</th>
                             <th>Роль</th>
-                            <th>Редагувати</th>
-                            <th>Видалити</th>
+                            <sec:authorize access="hasAuthority('ADMIN')">
+                                <th>Редагувати</th>
+                                <th>Видалити</th>
+                            </sec:authorize>
                         </tr>
                         </thead>
                         <tbody>
@@ -81,12 +86,14 @@
                             <td>Курило Матвій Юрійович</td>
                             <td>kurylom98@gmail.com</td>
                             <td>Адміністратор</td>
-                            <td>
-                                <a href="/users/edit/${user.id}" class="btn btn-warning">Редагувати</a>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger">Видалити</button>
-                            </td>
+                            <sec:authorize access="hasAuthority('ADMIN')">
+                                <td>
+                                    <a href="/users/edit/${user.id}" class="btn btn-warning">Редагувати</a>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger">Видалити</button>
+                                </td>
+                            </sec:authorize>
                         </tr>
 
 

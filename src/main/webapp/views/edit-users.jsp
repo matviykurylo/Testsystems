@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: home
@@ -49,12 +50,14 @@
                                     <label>Пароль</label>
                                     <input class="form-control" name="password" id="password" type="password" placeholder="Пароль">
                                 </div>
-                                <label>Роль користувача</label>
+                         <sec:authorize access="hasAuthority('ADMIN')">      <label>Роль користувача</label>
                                 <select class="form-control" name="role" id="role">
-                                   <c:forEach items="${role}" var="role">
-                                    <option value="${role.id}">${role.role}</option>
-                                   </c:forEach>
+                                   <option value="USER">СТУДЕНТ</option>
+                                   <option value="TEACHER">ВИКЛАДАЧ</option>
+                                   <option value="ADMIN">АДМІНІСТРАТОР</option>
+
                                 </select>
+                         </sec:authorize>
 
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success">Редагувати</button>

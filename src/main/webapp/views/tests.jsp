@@ -33,42 +33,50 @@
                     <a href="/logout" class="list-group-item">Вийти</a>
                     <a href="/users" class="list-group-item">Користувачі</a>
                     <a href="/tests/all" class="list-group-item active">Тести</a>
-                    <a href="results.jsp" class="list-group-item">Результати</a>
+                    <sec:authorize access="hasAnyAuthority('USER', 'ADMIN')"> <a href="results.jsp"
+                                                                                 class="list-group-item">Результати</a>
+                    </sec:authorize>
                 </div>
             </div>
         </div>
         <div class="col-lg-8">
             <div class="content-wrapper">
-               <form action="/tests/add" method="post">
-                <div class="add-tests">
-                    <label>Введіть назву тесту</label>
-                    <input type="text" class="form-control" name="title" placeholder="Назва тесту">
-                    <button type="submit" class="btn btn-success">Додати тест</button>
-                </div>
-                   </form>
+                <sec:authorize access="hasAnyAuthority('ADMIN', 'TEACHER')">
+                    <form action="/tests/add" method="post">
+                        <div class="add-tests">
+                            <label>Введіть назву тесту</label>
+                            <input type="text" class="form-control" name="title" placeholder="Назва тесту">
+                            <button type="submit" class="btn btn-success">Додати тест</button>
+                        </div>
+                    </form>
+                </sec:authorize>
                 <table class="table table-bordered">
                     <thead>
                     <tr class="active">
                         <th>Назва</th>
                         <th>Кількість питань</th>
-                        <th>Результати</th>
-                        <th>Редагувати</th>
-                        <th>Видалити</th>
+                        <sec:authorize access="hasAnyAuthority('ADMIN', 'TEACHER')">
+                            <th>Результати</th>
+                            <th>Редагувати</th>
+                            <th>Видалити</th>
+                        </sec:authorize>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td>Українська</td>
                         <td>8</td>
-                        <td>  <%--Студент кнопочок бачити не буде--%>
-                            <a href="results.jsp" class="btn btn-success">Результати</a>
-                        </td>
-                        <td>
-                            <button class="btn btn-warning">Редагувати</button>
-                        </td>
-                        <td>
-                            <button class="btn btn-danger">Видалити</button>
-                        </td>
+                        <sec:authorize access="hasAnyAuthority('ADMIN', 'TEACHER')">
+                            <td>
+                                <a href="results.jsp" class="btn btn-success">Результати</a>
+                            </td>
+                            <td>
+                                <button class="btn btn-warning">Редагувати</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger">Видалити</button>
+                            </td>
+                        </sec:authorize>
                     </tr>
 
                     </tbody>

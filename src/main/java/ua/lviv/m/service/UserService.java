@@ -4,6 +4,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ void edit(ua.lviv.m.entities.User user);
     ua.lviv.m.entities.User findById(int id);
     ua.lviv.m.entities.User findByEmail(String email);
 
+   // ua.lviv.m.entities.User getUserInfo(String surName, String name, String fName);
 
     List<ua.lviv.m.entities.User> findAll();
     List<ua.lviv.m.entities.User> findAllByOrderBySurNameAsc();
@@ -26,5 +28,6 @@ void edit(ua.lviv.m.entities.User user);
 
     UserDetails loadUserByUsername(String email) throws UsernameNotFoundException;
 
-    void add(String name, String surName, String fName, String email, String password, int roleID);
+
+
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: home
@@ -29,7 +30,9 @@
                 <div class="list-group">
                     <a href="/users" class="list-group-item">Користувачі</a>
                     <a href="/tests/all" class="list-group-item">Тести</a>
-                    <a href="results.html" class="list-group-item active">Результати</a>
+                    <sec:authorize access="hasAnyAuthority('USER', 'ADMIN')"> <a href="results.jsp"
+                                                                                 class="list-group-item">Результати</a>
+                    </sec:authorize>
                 </div>
             </div>
         </div>
@@ -47,35 +50,13 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td>Jogn Doe</td>
+                            <sec:authorize access="hasAnyAuthority('TEACHER','ADMIN')">
+                                <td>Jogn Doe</td>
+                            </sec:authorize>
                             <td>Англійська</td>
                             <td>8/8</td>
                         </tr>
-                        <tr>
-                            <td>Jogn Doe</td>
-                            <td>Англійська</td>
-                            <td>8/8</td>
-                        </tr>
-                        <tr>
-                            <td>Jogn Doe</td>
-                            <td>Англійська</td>
-                            <td>8/8</td>
-                        </tr>
-                        <tr>
-                            <td>Jogn Doe</td>
-                            <td>Англійська</td>
-                            <td>8/8</td>
-                        </tr>
-                        <tr>
-                            <td>Jogn Doe</td>
-                            <td>Англійська</td>
-                            <td>8/8</td>
-                        </tr>
-                        <tr>
-                            <td>Jogn Doe</td>
-                            <td>Англійська</td>
-                            <td>8/8</td>
-                        </tr>
+
                         </tbody>
                     </table>
                 </div>
